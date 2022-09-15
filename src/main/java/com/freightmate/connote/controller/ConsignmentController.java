@@ -19,6 +19,11 @@ import com.freightmate.connote.service.ConsignmentService;
 
 @RestController
 @RequestMapping("/consignments")
+/**
+ * 
+ * @author hiten.prajapati
+ * @implNote Rest controller for consignment request.
+ */
 public class ConsignmentController {
 	
 	@Autowired

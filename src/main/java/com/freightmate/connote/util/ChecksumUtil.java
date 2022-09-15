@@ -1,5 +1,10 @@
 package com.freightmate.connote.util;
 
+/**
+ * 
+ * @author hiten.prajapati
+ * @implNote ChecksumUtil for generate checksum from index number.
+ */
 public class ChecksumUtil {
 	
 	private static long oddMultiplier = 3;

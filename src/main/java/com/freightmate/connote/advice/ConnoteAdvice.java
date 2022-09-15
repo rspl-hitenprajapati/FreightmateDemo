@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * 
+ * @author hiten.prajapati
+ * @implNote ControllerAdvice for handling exceptions and resolve with custom messages.
+ */
 @ControllerAdvice
 public class ConnoteAdvice extends ResponseEntityExceptionHandler{
 

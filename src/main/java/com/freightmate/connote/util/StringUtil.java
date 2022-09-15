@@ -1,5 +1,10 @@
 package com.freightmate.connote.util;
 
+/**
+ * 
+ * @author hiten.prajapati
+ * @implNote StringUtil for operation in strings.
+ */
 public class StringUtil {
 
 	private StringUtil() {

@@ -2,7 +2,11 @@
 
 ### Application development environment
 
-The application is developed using Java 8. 
+The application is developed using
+	
+	1. Java8
+	2. SpringBoot
+	3. Junit + Mockito
 
 ### How to run the application with maven build (Recommended)
 
