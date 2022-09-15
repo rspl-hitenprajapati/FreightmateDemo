@@ -18,7 +18,7 @@ import com.freightmate.connote.controller.request.ConnoteNumberResponse;
 import com.freightmate.connote.service.ConsignmentService;
 
 @RestController
-@RequestMapping("/consignment")
+@RequestMapping("/consignments")
 public class ConsignmentController {
 	
 	@Autowired
@@ -26,7 +26,7 @@ public class ConsignmentController {
 
 	private static final Logger log = LoggerFactory.getLogger(ConsignmentController.class);
 
-	@PostMapping(value = "/generateConnoteNumber", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/connotenumber", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ConnoteNumberResponse> generateConnoteNumber(@Valid @RequestBody ConnoteNumberRequest connoteNumberRequest) throws Exception {
 		log.info("ConnoteNumber request received {}", connoteNumberRequest);
 		ConnoteNumberResponse connoteNumberResponse =  consignmentService.generateConnoteNumber(connoteNumberRequest);

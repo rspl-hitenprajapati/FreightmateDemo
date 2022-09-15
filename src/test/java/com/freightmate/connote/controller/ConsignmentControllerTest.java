@@ -29,6 +29,8 @@ public class ConsignmentControllerTest {
 
 	@Autowired
 	protected MockMvc mockMvc;
+	
+	private final String restUrl = "/consignments/connotenumber";
 
 	@Test
 	public void testConsignmentController_ValidCase() throws Exception {
@@ -36,7 +38,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON)).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(connoteNumberResponse), result.getResponse().getContentAsString(), false);
@@ -49,7 +51,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("carrierName is required.")), result.getResponse().getContentAsString(), false);
@@ -62,7 +64,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("accountNumber is required.")), result.getResponse().getContentAsString(), false);
@@ -75,7 +77,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("digits is required.")), result.getResponse().getContentAsString(), false);
@@ -88,7 +90,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("lastUsedIndex is required.")), result.getResponse().getContentAsString(), false);
@@ -101,7 +103,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("rangeStart is required.")), result.getResponse().getContentAsString(), false);
@@ -114,7 +116,7 @@ public class ConsignmentControllerTest {
 		ConnoteNumberResponse connoteNumberResponse = new ConnoteNumberResponse("FMCC123ABC00000192022");
 		when(consignmentService.generateConnoteNumber(Mockito.any())).thenReturn(connoteNumberResponse);
 		MvcResult result = mockMvc
-				.perform(post("/consignment/generateConnoteNumber").contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
+				.perform(post(restUrl).contentType(MediaType.APPLICATION_JSON).content(objectToJson(cannoteRequest)))
 				.andExpect(status().isBadRequest()).andReturn();
 		
 		JSONAssert.assertEquals(objectToJson(new ErrorResponse("rangeEnd is required.")), result.getResponse().getContentAsString(), false);
