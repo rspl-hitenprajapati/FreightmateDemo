@@ -30,7 +30,7 @@ public class ConnoteNumberRequest {
 	private Integer digits;
 	
 	@JsonProperty("lastUsedIndex")
-	@NotNull(message = "digits is required.")
+	@NotNull(message = "lastUsedIndex is required.")
 	private Long lastUsedIndex;
 	
 	@JsonProperty("rangeStart")

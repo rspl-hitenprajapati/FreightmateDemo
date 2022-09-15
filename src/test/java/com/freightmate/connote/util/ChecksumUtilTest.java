@@ -21,4 +21,12 @@ public class ChecksumUtilTest {
 		long expected = 8;
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testCalculateChecksum_Test3() {
+		long input = 9872357321l;
+		long actual = ChecksumUtil.calculateChecksum(input);
+		long expected = 7;
+		assertEquals(expected, actual);
+	}
 }
