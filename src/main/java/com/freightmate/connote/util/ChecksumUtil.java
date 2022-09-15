@@ -2,33 +2,52 @@ package com.freightmate.connote.util;
 
 public class ChecksumUtil {
 	
-	private static long oddsSumConst = 3;
-	private static long evenSumConst = 7;
+	private static long oddMultiplier = 3;
+	private static long evenMultiplier = 7;
 
 	private ChecksumUtil() {
 	}
 
 	public static long calculateChecksum(long nextIndex) {
-		long indexToProcess = nextIndex;
+		SummationContainer summationContainer = calculateEvenOddSummation(nextIndex);
+		long sumOdd = performMultiplication(summationContainer.getSumOdd(),oddMultiplier);
+		long sumEven = performMultiplication(summationContainer.getSumEven(), evenMultiplier);
+		long sum = performSummation(sumOdd,sumEven);
+		return nextMultipleOf10(sum) - (sum);
+	}
+	
+	
+	private static long performSummation(long firstNumber, long secondNumber)
+	{
+		return firstNumber+secondNumber;
+	}
+	
+	private static long performMultiplication(long sum, long multiplier)
+	{
+		return sum * multiplier;
+	}
+	
+	
+	private static SummationContainer calculateEvenOddSummation(long number)
+	{
 		long sumEven = 0;
 		long sumOdd = 0;
 		int counter = 1;
-		while (indexToProcess != 0) {
-			long remainder = indexToProcess % 10;
+		while (number != 0) {
+			long remainder = number % 10;
 			if (counter % 2 == 0) {
 				sumEven = sumEven + remainder;
 			} else {
 				sumOdd = sumOdd + remainder;
 			}
 			counter++;
-			indexToProcess = indexToProcess / 10;
+			number = number / 10;
 		}
-		sumOdd = sumOdd * oddsSumConst;
-		sumEven = sumEven * evenSumConst;
-		return nextMultiple(sumEven + sumOdd) - (sumEven + sumOdd);
+		
+		return new SummationContainer(sumEven, sumOdd);
 	}
 
-	private static long nextMultiple(long value) {
+	private static long nextMultipleOf10(long value) {
 		return ((value / 10) + 1) * 10;
 	}
 }

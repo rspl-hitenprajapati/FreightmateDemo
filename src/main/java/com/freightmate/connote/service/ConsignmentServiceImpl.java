@@ -15,22 +15,27 @@ public class ConsignmentServiceImpl implements ConsignmentService {
 	public ConnoteNumberResponse generateConnoteNumber(ConnoteNumberRequest connoteNumberRequest) {
 		// Validations
 		long nextIndex = connoteNumberRequest.getLastUsedIndex() + 1;
-		if (nextIndex < connoteNumberRequest.getRangeEnd() || nextIndex > connoteNumberRequest.getRangeStart()) {
-			throw new IllegalArgumentException("connote number is not within prescribed range.");
-		}
-		if (String.valueOf(connoteNumberRequest.getLastUsedIndex() + 1).length() > connoteNumberRequest.getDigits()) {
-			throw new IllegalArgumentException("connote number can not larger then allowed digits.");
-		}
 		String prefix = StringUtil.createAbbriviation(connoteNumberRequest.getCarrierName());
-		if (StringUtils.isEmpty(prefix)) {
-			throw new IllegalArgumentException("Please use camel case in carrierName to use prefix.");
-		}
+		validateRequest(connoteNumberRequest, nextIndex,prefix);
 		// Process
 		String nextIndexString = StringUtil.numberAppender(nextIndex, connoteNumberRequest.getDigits());
 		long checkSum = ChecksumUtil.calculateChecksum(nextIndex);
 
 		// response
 		return new ConnoteNumberResponse(prefix + connoteNumberRequest.getAccountNumber() + nextIndexString + checkSum);
+	}
+
+	private void validateRequest(ConnoteNumberRequest connoteNumberRequest, long nextIndex,String prefix) {
+		if (nextIndex > connoteNumberRequest.getRangeEnd() || nextIndex < connoteNumberRequest.getRangeStart()) {
+			throw new IllegalArgumentException("connote number is not within prescribed range.");
+		}
+		if (String.valueOf(connoteNumberRequest.getLastUsedIndex() + 1).length() > connoteNumberRequest.getDigits()) {
+			throw new IllegalArgumentException("connote number can not larger then allowed digits.");
+		}
+		
+		if (StringUtils.isEmpty(prefix)) {
+			throw new IllegalArgumentException("Please use camel case in carrierName to use prefix.");
+		}
 	}
 
 }
